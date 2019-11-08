@@ -10,6 +10,8 @@ public class Insert {
 	
 	private String value;
 	
+	private String comment;
+	
 	public Insert() {}
 	
 	public Insert withTable(String table) {
@@ -29,6 +31,12 @@ public class Insert {
 	
 	public Insert withQuery(String query) {
 		setQuery(query);
+		return this;
+	}
+	
+	public Insert withComment(Integer number) {
+		String text = "-- " + number + " Inserção do registro " + getValue() + " na tabela " + getTable();
+		setComment(text);
 		return this;
 	}
 
@@ -62,6 +70,14 @@ public class Insert {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }
