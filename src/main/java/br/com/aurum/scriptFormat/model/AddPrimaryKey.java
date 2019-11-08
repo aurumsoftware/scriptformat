@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class AddPrimaryKey {
+public class AddPrimaryKey extends Query {
 
 	private String table;
 	

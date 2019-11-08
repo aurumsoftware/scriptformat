@@ -1,9 +1,9 @@
 package br.com.aurum.scriptFormat.model;
 
-public class CreateTable {
+public class CreateTable extends Query {
 	
 	private String query;
-	
+
 	private String table;
 	
 	private String comment;

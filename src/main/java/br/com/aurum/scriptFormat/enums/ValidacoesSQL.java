@@ -37,7 +37,7 @@ public enum ValidacoesSQL {
 			"END\n" + 
 			"GO"),
 	
-	DROP_CONSTRAINT("IF (SELECT COUNT(*) FROM sysobjects WHERE name = '%s' and xtype = 'C') = 1\n" + 
+	DROP_CONSTRAINT("IF (SELECT COUNT(*) FROM sysobjects WHERE name = '%s') = 1\n" + 
 			"BEGIN\n" + 
 			"    %s\n" + 
 			"END\n" + 

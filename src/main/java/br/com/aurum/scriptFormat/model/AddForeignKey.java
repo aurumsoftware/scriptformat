@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class AddForeignKey {
+public class AddForeignKey extends Query {
 
 	private String table;
 	

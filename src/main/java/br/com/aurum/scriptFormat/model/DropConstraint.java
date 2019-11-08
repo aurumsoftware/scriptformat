@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class DropConstraint {
+public class DropConstraint extends Query {
 	
 	private String query;
 	

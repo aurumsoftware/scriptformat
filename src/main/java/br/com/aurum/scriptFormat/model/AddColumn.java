@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class AddColumn {
+public class AddColumn extends Query {
 
 	private String table;
 	
