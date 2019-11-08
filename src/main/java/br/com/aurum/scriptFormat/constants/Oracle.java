@@ -5,8 +5,7 @@ public enum Oracle {
     SMALLDATETIME("TIMESTAMP"),
     DATE("TIMESTAMP"),
     BLOB("CLOB"),
-    TEXT("CLOB"),
-    ASPASSIMPLES("''");
+    TEXT("CLOB");
 
     private String value;
 

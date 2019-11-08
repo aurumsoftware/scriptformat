@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class Insert {
+public class Insert extends Query {
 	
 	private String query;
 	

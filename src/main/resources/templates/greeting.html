@@ -2,17 +2,20 @@
 <html lang="en">
 
 <head>
-
+<script th:src="@{/js/angular.min.js}"></script>
+<script th:src="@{/js/angular-locale_pt-br.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/script.js}"></script>
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-app="scriptFormatAngular">
 	<div class="content-head">
 		<br />
 		<h3>
 			<i class="icon-cogs"></i>&nbsp;&nbsp;Script Format
 		</h3>
 	</div>
-	<div class="content-body">
+	<div class="content-body" ng-controller="scriptController">
 		<form method="POST" id="formEnvioManual">
 			<div class="span5">
 				<section class="row-fluid">
@@ -23,15 +26,15 @@
 						<div class="module-body">
 							<label class="control-label table"><b>Tabela</b></label>
 							<div class="controls">
-								<input type="text" id="table" maxlength="30" class="input-block-level table" name="table" onchange="refresh()">
+								<input type="text" id="table" maxlength="30" ng-model="table" class="input-block-level table" name="table" >
 							</div>
 							<label class="control-label column"><b>Coluna</b></label>
 							<div class="controls">
-								<input type="text" id="column" maxlength="30" class="input-block-level column" name="column" onchange="refresh()">
+								<input type="text" id="column" maxlength="30" ng-model="column" class="input-block-level column" name="column" >
 							</div>
 							<label class="control-label constraintType"><b>Tipo</b></label>
 							<div class="controls">
-								<select id="constraintType" class="input-block-level constraintType" name="constraintType" onchange="refresh()">
+								<select id="constraintType" class="input-block-level constraintType" name="constraintType" >
 									<option value="C">Check</option>
 									<option value="F">Foreign key</option>
 									<option value="PK">Primary key</option>
@@ -40,28 +43,28 @@
 							</div>
 							<label class="control-label value" id="labelValue"><b>Valor</b></label>
 							<div class="controls">
-								<input type="text" id="value" maxlength="30" class="input-block-level value" name="value" onchange="refresh()">
+								<input type="text" id="value" ng-model="value" maxlength="30" class="input-block-level value" name="value" >
 							</div>
 							<label class="control-label visivel" id="labelValue2" ><b>Coluna referenciada</b></label>
 							<div class="controls visivel">
-								<input type="text" id="value2" class="input-block-level" name="value2" onchange="refresh()">
+								<input type="text" id="value2" class="input-block-level" name="value2" >
 							</div>
 							<label class="control-label visivel" id="labelValue3"><b>Tabela referenciada</b></label>
 							<div class="controls visivel">
-								<input type="text" id="value3" class="input-block-level" name="value3" onchange="refresh()">
+								<input type="text" id="value3" class="input-block-level" name="value3" >
 							</div>
 							<label class="control-label visivel" id="labelValue4"><b>Cascade</b></label>
 							<div class="controls visivel">
-								<input type="text" id="value4" class="input-block-level" name="value4" onchange="refresh()">
+								<input type="text" id="value4" class="input-block-level" name="value4" >
 							</div>
 							<label class="control-label script"><b>Script</b></label>
 							<div class="controls">
-								<textarea rows="5" id="script"  class="input-block-level script" name="script" onchange="refresh()"></textarea>
+								<textarea rows="5" id="script" ng-model="query" class="input-block-level script" name="script" ></textarea>
 							</div>
 							<label class="control-label"><b>Comentário</b></label>
 							<div class="controls">
-								<input type="number" id="number" class="span2" onchange="refresh()">
-								<input type="text" id="comment" class="span10" name="comment" disabled="disabled" onchange="refresh()">
+								<input type="number" id="number" class="span2" ng-model="number">
+								<input type="text" id="comment" class="span10" name="comment" disabled="disabled" value="{{datos.comment}}">
 							</div>
 						</div>
 					</section>
@@ -75,34 +78,34 @@
 						</div>
 						<div class="module-body">
 							<label class="radio inline"> 
-								<input type="radio" name="tipo"	value="insert" onclick="changeType('insert')" id="insert">Insert into
+								<input type="radio" name="tipo"	value="insert" ng-click="insert()" id="insert">Insert into
 							</label>
 							<label class="radio inline"> 
-								<input type="radio"	name="tipo"	value="createTable" onclick="changeType('createTable')" id="createTable">Create table
+								<input type="radio"	name="tipo"	value="createTable" id="createTable">Create table
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="addColumn" onclick="changeType('addColumn')" id="addColumn">Add column
+								<input type="radio" name="tipo" value="addColumn" id="addColumn">Add column
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="addForeignKey" onclick="changeType('addForeignKey')" id="addForeignKey">Add foreign key
+								<input type="radio" name="tipo" value="addForeignKey" id="addForeignKey">Add foreign key
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="geraSequence" onclick="changeType('geraSequence')" id="addForeignKey">Gera themis_sequence
+								<input type="radio" name="tipo" value="geraSequence"  id="addForeignKey">Gera themis_sequence
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="dropTable" onclick="changeType('dropTable')" id="dropTable">Drop table
+								<input type="radio" name="tipo" value="dropTable" id="dropTable">Drop table
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="dropColumn" onclick="changeType('dropColumn')" id="dropColumn">Drop column
+								<input type="radio" name="tipo" value="dropColumn"  id="dropColumn">Drop column
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="dropConstraint" onclick="changeType('dropConstraint')" id="dropConstraint">Drop constraint
+								<input type="radio" name="tipo" value="dropConstraint" id="dropConstraint">Drop constraint
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="addPrimaryKey" onclick="changeType('addPrimaryKey')" id="addPrimaryKey">Add primary key
+								<input type="radio" name="tipo" value="addPrimaryKey" id="addPrimaryKey">Add primary key
 							</label>
 							<label class="radio inline"> 
-								<input type="radio" name="tipo" value="changeVersion" onclick="changeType('changeVersion')" id="changeVersion">Change version
+								<input type="radio" name="tipo" value="changeVersion"  id="changeVersion">Change version
 							</label>
 						</div>
 					</section>
@@ -129,7 +132,7 @@
 						<b>Firebird</b>
 					</div>
 					<div class="module-body">
-						<b id="resultadoFirebird" style="white-space: pre-line;"></b>
+						<b id="resultadoFirebird" style="white-space: pre-line;">{{dados.firebird}}</b>
 					</div>
 				</section>
 				<section class="module">	
@@ -137,7 +140,7 @@
 						<b>SQL Server</b>
 					</div>
 					<div class="module-body">
-						<b id="resultadoSqlServer" style="white-space: pre-line;"></b>
+						<b id="resultadoSqlServer" style="white-space: pre-line;">{{dados.sqlServer}}</b>
 					</div>
 				</section>
 				<section class="module">				
@@ -145,7 +148,7 @@
 						<b>Oracle</b>
 					</div>
 					<div class="module-body">
-						<b id="resultadoOracle" style="white-space: pre-line;"></b>
+						<b id="resultadoOracle" style="white-space: pre-line;">{{dados.oracle}}</b>
 					</div>
 				</section>
 			</section>

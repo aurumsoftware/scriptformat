@@ -6,8 +6,7 @@ public enum Firebird {
     DATE("TIMESTAMP"),
     INTEGER("INTEGER"),
     TEXT("BLOB"),
-    CLOB("BLOB"),
-    ASPASSIMPLES("''");
+    CLOB("BLOB");
 
     private String value;
 
