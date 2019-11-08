@@ -1,45 +1,36 @@
 package br.com.aurum.scriptFormat.model;
 
-public class Insert {
-	
-	private String query;
-	
+public class Add {
+
 	private String table;
 	
 	private String column;
 	
-	private String value;
+	private String query;
 	
 	private String comment;
 	
-	public Insert() {}
+	public Add() {}
 	
-	public Insert withTable(String table) {
+	public Add withTable(String table) {
 		setTable(table);
 		return this;
 	}
 	
-	public Insert withColumn(String column) {
+	public Add withColumn(String column) {
 		setColumn(column);
 		return this;
 	}
 	
-	public Insert havingValue(String value) {
-		setValue(value);
-		return this;
-	}
-	
-	public Insert withQuery(String query) {
+	public Add withQuery(String query) {
 		setQuery(query);
 		return this;
 	}
-
-	public String getQuery() {
-		return query;
-	}
-
-	public void setQuery(String query) {
-		this.query = query;
+	
+	public Add withComment(Integer number) {
+		String text = "-- " + number + " Inclusão do campo " + getColumn() + " na tabela " + getTable();
+		setComment(text);
+		return this;
 	}
 
 	public String getTable() {
@@ -58,12 +49,12 @@ public class Insert {
 		this.column = column;
 	}
 
-	public String getValue() {
-		return value;
+	public String getQuery() {
+		return query;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setQuery(String query) {
+		this.query = query;
 	}
 
 	public String getComment() {
@@ -73,5 +64,5 @@ public class Insert {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
+	
 }
