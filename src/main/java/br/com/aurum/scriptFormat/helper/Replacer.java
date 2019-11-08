@@ -8,7 +8,7 @@ public class Replacer {
 
     public String replaceQueryToOracle(String query){
         query = query.replaceAll("INTEGER", Oracle.INTEGER.getValue());
-        query = query.replaceAll("SMALLDATETIME", Oracle.SMALLDATETIME.getValue());
+        query = query.replaceAll("SMALLDATETIME", Oracle.DATE.getValue());
         query = query.replaceAll("DATE", Oracle.DATE.getValue());
         query = query.replaceAll("BLOB", Oracle.BLOB.getValue());
         query = query.replaceAll("TEXT", Oracle.TEXT.getValue());
