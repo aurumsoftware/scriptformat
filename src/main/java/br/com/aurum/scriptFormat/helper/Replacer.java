@@ -3,7 +3,6 @@ package br.com.aurum.scriptFormat.helper;
 import br.com.aurum.scriptFormat.constants.Firebird;
 import br.com.aurum.scriptFormat.constants.Oracle;
 import br.com.aurum.scriptFormat.constants.SqlServer;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 public class Replacer {
 

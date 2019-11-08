@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="scriptFormatAngular">
+<script th:src="@{/js/angular.min.js}"></script>
+<script th:src="@{/js/angular-locale_pt-br.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+	<!-- Pignose Calender -->
+	<link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+	<!-- Chartist -->
+
+	<link type="text/css" th:href="@{/layout/plugins/chartist/css/chartist.min.css}" rel="stylesheet">
+	<link type="text/css" th:href="@{/layout/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css}" rel="stylesheet">
+	<!-- Custom Stylesheet -->
+	<link type="text/css" th:href="@{/layout/css/style.css}" rel="stylesheet">
+
+</head>
+
+<body ng-controller="scriptController">
+
+<!--*******************
+    Preloader start
+********************-->
+<div id="preloader">
+	<div class="loader">
+		<svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+		</svg>
+	</div>
+</div>
+<!--**********************************
+    Main wrapper start
+***********************************-->
+<div id="main-wrapper">
+
+	<!--**********************************
+        Header start
+    ***********************************-->
+	<div class="header" style="margin-left:0; width:100%">
+		<div class="header-content clearfix" style="display:flex; justify-content:center; padding:25px">
+			<img src="./layout/img/logo.png" class="img-logo">
+		</div>
+	</div>
+	<!--**********************************
+        Content body start
+    ***********************************-->
+	<div class="content-body" style="margin-left:0;">
+		<div class="container-fluid mt-3">
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="card gradient-1">
+						<div class="card-body">
+							<h3 class="card-title text-white">Scripts criados</h3>
+							<div class="d-inline-block">
+								<h2 class="text-white">0</h2>
+							</div>
+							<span class="float-right display-5 opacity-5"><i class="fa fa-code"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="card gradient-2">
+						<div class="card-body">
+							<h3 class="card-title text-white">Tabela afetadas</h3>
+							<div class="d-inline-block">
+								<h2 class="text-white">0</h2>
+							</div>
+							<span class="float-right display-5 opacity-5"><i class="fa fa-table"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="card gradient-3">
+						<div class="card-body">
+							<h3 class="card-title text-white">Colunas afetadas</h3>
+							<div class="d-inline-block">
+								<h2 class="text-white">0</h2>
+							</div>
+							<span class="float-right display-5 opacity-5"><i class="fa fa-"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="card gradient-4">
+						<div class="card-body">
+							<h3 class="card-title text-white">Dados afetados</h3>
+							<div class="d-inline-block">
+								<h2 class="text-white">0</h2>
+							</div>
+							<span class="float-right display-5 opacity-5"><i class="fa fa-"></i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="row">
+
+						<div class="col-3">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Dados do script</h4>
+									<div class="basic-form">
+										<form _lpchecked="1">
+											<div class="form-group">
+												<label>Tipo do script</label>
+												<select class="form-control" id="typeScriptList">
+													<option>ADD COLUMN</option><option>ADD FOREING KEY</option><option>ADD PRIMARY KEY</option><option>CREATE TABLE</option><option>INSERT INTO</option>
+
+
+
+													<option>DROP COLUMN</option><option>DROP CONSTRAINT</option><option>DROP TABLE</option>
+												</select>
+
+											</div>
+
+											<div class="form-group">
+												<label>Tabela</label><input type="text" class="form-control input-default" ng-model="table" placeholder="" id="tableScript" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+											</div><div class="form-group">
+												<label>Coluna</label><input type="text" class="form-control input-default" ng-model="column" placeholder="" id="columnScript">
+											</div>
+											<div class="form-group">
+												<label>Tipo</label><input type="text" class="form-control input-default" ng-model="type" placeholder="" id="typeScript">
+											</div>
+											<div class="form-group">
+												<label>Valor</label><input type="text" class="form-control input-default" ng-model="value" placeholder="" id="valueScript">
+											</div>
+											<div class="form-group">
+												<label>Foreign Key</label><input type="text" class="form-control input-default" placeholder="" id="fkScript">
+											</div>
+											<div class="form-group">
+												<label>Coluna referenciada</label><input type="text" class="form-control input-default" placeholder="" id="refColumnScript">
+											</div>
+											<div class="form-group">
+												<label>Tabela referenciada</label><input type="text" class="form-control input-default" placeholder="" id="refTableScript">
+											</div>
+											<div class="form-group">
+												<label>Cascasde</label><input type="text" class="form-control input-default" placeholder="" id="cascadeScript">
+											</div>
+											<div class="form-group">
+												<label>Comentário</label><input type="text" class="form-control input-default" placeholder="" id="commentScript">
+											</div></form>
+									</div>
+								</div>
+							</div>
+						</div><div class="col-md-9">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">Script</h4>
+								<!-- Nav tabs -->
+								<div class="default-tab">
+									<ul class="nav nav-tabs mb-3" role="tablist">
+										<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#query">Meu script</a>
+										</li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#firebird" ng-click="insert()">Firebird</a>
+										</li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#sqlServer">MSSQL</a>
+										</li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#oracle">Oracle</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane fade active show" id="query" role="tabpanel">
+											<div class="p-t-15">
+												<form>
+													<div class="form-group">
+														<textarea class="form-control h-150px" rows="20" id="script" ng-model="query"></textarea>
+													</div>
+												</form>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="firebird">
+											<div class="p-t-15">
+												<textarea class="form-control h-150px" rows="20">{{dados.firebird}}</textarea>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="sqlServer">
+											<div class="p-t-15">
+												<textarea class="form-control h-150px" rows="20">{{dados.sqlServer}}</textarea>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="oracle">
+											<div class="p-t-15">
+												<textarea class="form-control h-150px" rows="20">{{dados.oracle}}</textarea>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					</div>
+				</div>
+			</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<script src="plugins/common/common.min.js"></script>
+<script src="js/custom.min.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/gleek.js"></script>
+<script src="js/styleSwitcher.js"></script>
+
+<!-- Chartjs -->
+<script src="./plugins/chart.js/Chart.bundle.min.js"></script>
+<!-- Circle progress -->
+<script src="./plugins/circle-progress/circle-progress.min.js"></script>
+<!-- Datamap -->
+<script src="./plugins/d3v3/index.js"></script>
+<script src="./plugins/topojson/topojson.min.js"></script>
+<script src="./plugins/datamaps/datamaps.world.min.js"></script>
+<!-- Morrisjs -->
+<script src="./plugins/raphael/raphael.min.js"></script>
+<script src="./plugins/morris/morris.min.js"></script>
+<!-- Pignose Calender -->
+<script src="./plugins/moment/moment.min.js"></script>
+<script src="./plugins/pg-calendar/js/pignose.calendar.min.js"></script>
+<!-- ChartistJS -->
+<script src="./plugins/chartist/js/chartist.min.js"></script>
+<script src="./plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+
+
+
+<script src="./js/dashboard/dashboard-1.js"></script>
+
+</body>
+
+</html>

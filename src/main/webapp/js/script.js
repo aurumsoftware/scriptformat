@@ -6,6 +6,8 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		var query = $scope.query;
 		var number = $scope.number;
 		
+		number = 1;
+		
 		
 		var url = "http://localhost:8080/insert?query=" + query + "&table=" + table + "&column=" + column + "&value=" + value + "&number=" + number;
 					
