@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class Add {
+public class AddColumn {
 
 	private String table;
 	
@@ -10,24 +10,24 @@ public class Add {
 	
 	private String comment;
 	
-	public Add() {}
+	public AddColumn() {}
 	
-	public Add withTable(String table) {
+	public AddColumn withTable(String table) {
 		setTable(table);
 		return this;
 	}
 	
-	public Add withColumn(String column) {
+	public AddColumn withColumn(String column) {
 		setColumn(column);
 		return this;
 	}
 	
-	public Add withQuery(String query) {
+	public AddColumn withQuery(String query) {
 		setQuery(query);
 		return this;
 	}
 	
-	public Add withComment(Integer number) {
+	public AddColumn withComment(Integer number) {
 		String text = "-- " + number + " Inclusão do campo " + getColumn() + " na tabela " + getTable();
 		setComment(text);
 		return this;
