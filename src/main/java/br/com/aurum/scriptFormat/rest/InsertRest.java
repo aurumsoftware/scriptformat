@@ -23,9 +23,9 @@ public class InsertRest {
 		
 		Replacer replacer = new Replacer();
 		insert.setSqlServer(String.format(ValidacoesFirebird.INSERT_INTO.getValor(), table, column, value,
-				replacer.replaceQueryToFirebird(query.toUpperCase())));
-		insert.setSqlServer(String.format(ValidacoesSQL.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToSqlServer(query.toUpperCase())));
+		insert.setFirebird(String.format(ValidacoesSQL.INSERT_INTO.getValor(), table, column, value,
+				replacer.replaceQueryToFirebird(query.toUpperCase())));
 		insert.setOracle(String.format(ValidacoesOracle.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToOracle(query.toUpperCase())));
 		Gson gson = new Gson();

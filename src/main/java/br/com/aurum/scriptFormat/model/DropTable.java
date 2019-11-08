@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class DropTable {
+public class DropTable extends Query{
 	
 	private String query;
 	
