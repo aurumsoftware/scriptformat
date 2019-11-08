@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class DropColumn {
+public class DropColumn extends Query {
 	
 	private String query;
 	
