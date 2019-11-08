@@ -18,9 +18,9 @@ public class AddForeignKeyRest {
 	
 	@RequestMapping(value="/addForeignKey")
 	public @ResponseBody String getAddForeignKey(@RequestParam String query, @RequestParam String table, @RequestParam String column, 
-			@RequestParam String name, @RequestParam String columnReferenced, @RequestParam String tableReferenced, @RequestParam(defaultValue="1") Integer number) {
-		AddForeignKey addForeignKey = new AddForeignKey().withQuery(query).withTable(table).withColumn(column).withName(name)
-				.withColumnReferenced(columnReferenced).withTableReferenced(tableReferenced).withComment(number);
+			@RequestParam String name, @RequestParam String columnReferenced, @RequestParam String tableReferenced, @RequestParam String cascade, @RequestParam(defaultValue="1") Integer number) {
+		AddForeignKey addForeignKey = new AddForeignKey().withQuery(query).withTable(table).withColumn(column).withName(name).
+				withColumnReferenced(columnReferenced).withTableReferenced(tableReferenced).withCascade(cascade).withComment(number);
 		
 		Replacer replacer = new Replacer();
 		
@@ -32,7 +32,7 @@ public class AddForeignKeyRest {
 		
 		addForeignKey.setOracle(String.format(ValidacoesOracle.ADD_FOREIGN_KEY.getValor(), name, 
 				replacer.replaceQueryToOracle(query.toUpperCase())));
-		
+	
 		Gson gson = new Gson();
 		return gson.toJson(addForeignKey);
 	}

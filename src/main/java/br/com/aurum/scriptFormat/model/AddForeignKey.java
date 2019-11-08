@@ -50,6 +50,11 @@ public class AddForeignKey extends Query {
 		return this;
 	}
 	
+	public AddForeignKey withCascade(String cascade) {
+		setCascade(cascade);
+		return this;
+	}
+	
 	public AddForeignKey withComment(Integer number) {
 		String text = "-- " + number + " Criação da Foreign Key " + getName();
 		setComment(text);
