@@ -13,8 +13,8 @@ import br.com.aurum.scriptFormat.model.Insert;
 public class InsertRest {
 	
 	@RequestMapping(value="/insert")
-	public @ResponseBody String getInsert(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam String value) {
-		Insert insert = new Insert().withQuery(query).withTable(table).withColumn(column).havingValue(value);
+	public @ResponseBody String getInsert(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam String value, @RequestParam Integer number) {
+		Insert insert = new Insert().withQuery(query).withTable(table).withColumn(column).havingValue(value).withComment(number);
 		Gson gson = new Gson();
 		return gson.toJson(insert);
 	}
