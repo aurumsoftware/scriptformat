@@ -21,7 +21,7 @@ public class DropConstraintRest {
 		DropConstraint dropConstraint = new DropConstraint().withQuery(query).havingTable(table).withName(name).withType(type).withComment(number);
 		
 		Replacer replacer = new Replacer();
-		dropConstraint.setSqlServer(String.format(ValidacoesFirebird.DROP_CONSTRAINT.getValor(), name,
+		dropConstraint.setFirebird(String.format(ValidacoesFirebird.DROP_CONSTRAINT.getValor(), name,
 				replacer.replaceQueryToFirebird(query.toUpperCase())));
 		dropConstraint.setSqlServer(String.format(ValidacoesSQL.DROP_CONSTRAINT.getValor(), name,
 				replacer.replaceQueryToSqlServer(query.toUpperCase())));
