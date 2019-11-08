@@ -5,7 +5,7 @@ public enum ValidacoesFirebird {
 			"as\n" + 
 			"declare chk int;\n" + 
 			"BEGIN\n" + 
-			" SELECT count(*) from %s WHERE %s = %s INTO :chk;    \n" + 
+			" SELECT count(*) from %s WHERE %s = '%s' INTO :chk;    \n" + 
 			" if (chk = 0 ) then\n" + 
 			" begin\n" + 
 			"  	%s\n" + 
