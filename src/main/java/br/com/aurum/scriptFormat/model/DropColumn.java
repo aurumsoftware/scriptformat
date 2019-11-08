@@ -1,6 +1,6 @@
 package br.com.aurum.scriptFormat.model;
 
-public class Insert {
+public class DropColumn {
 	
 	private String query;
 	
@@ -8,34 +8,27 @@ public class Insert {
 	
 	private String column;
 	
-	private String value;
-	
 	private String comment;
 	
-	public Insert() {}
+	public DropColumn() {}
 	
-	public Insert withTable(String table) {
+	public DropColumn havingTable(String table) {
 		setTable(table);
 		return this;
 	}
 	
-	public Insert withColumn(String column) {
-		setColumn(column);
-		return this;
-	}
-	
-	public Insert havingValue(String value) {
-		setValue(value);
-		return this;
-	}
-	
-	public Insert withQuery(String query) {
+	public DropColumn withQuery(String query) {
 		setQuery(query);
 		return this;
 	}
 	
-	public Insert withComment(Integer number) {
-		String text = "-- " + number + " Inserção do registro " + getValue() + " na tabela " + getTable();
+	public DropColumn withColumn(String column) {
+		setColumn(column);
+		return this;
+	}
+	
+	public DropColumn withComment(Integer number) {
+		String text = "-- " + number + " Exclusão da coluna " + getColumn() + " na tabela " + getTable();
 		setComment(text);
 		return this;
 	}
@@ -64,14 +57,6 @@ public class Insert {
 		this.column = column;
 	}
 
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
 	public String getComment() {
 		return comment;
 	}
@@ -79,5 +64,4 @@ public class Insert {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
 }

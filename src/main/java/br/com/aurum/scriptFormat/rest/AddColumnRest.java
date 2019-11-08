@@ -12,8 +12,8 @@ import br.com.aurum.scriptFormat.model.AddColumn;
 @RestController
 public class AddColumnRest {
 	
-	@RequestMapping(value="/add")
-	public @ResponseBody String getAdd(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam(defaultValue="1") Integer number) {
+	@RequestMapping(value="/addColumn")
+	public @ResponseBody String getAddColumn(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam(defaultValue="1") Integer number) {
 		AddColumn addColumn = new AddColumn().withQuery(query).withTable(table).withColumn(column).withComment(number);
 		Gson gson = new Gson();
 		return gson.toJson(addColumn);
