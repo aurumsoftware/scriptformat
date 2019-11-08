@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 
 import br.com.aurum.scriptFormat.model.DropColumn;
-import br.com.aurum.scriptFormat.model.DropTable;
 
 @RestController
 public class DropColumnRest {
