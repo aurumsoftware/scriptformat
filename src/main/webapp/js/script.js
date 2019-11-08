@@ -1,6 +1,6 @@
 app.controller('scriptController', ['$scope', '$http', '$window', 'utilService', function($scope, $http, $window, utilService) {
 	
-	$scope.insert = function() {
+	$scope.getQuery = function() {
 		var table = $scope.table;
 		var column = $scope.column;
 		var value = $scope.value;
@@ -40,15 +40,7 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		
 		
 		if (type == 'createTable') {
-			var url String.prototype.replaceAll = function(de, para){
-			    var str = this;
-			    var pos = str.indexOf(de);
-			    while (pos > -1){
-					str = str.replace(de, para);
-					pos = str.indexOf(de);
-				}
-			    return (str);
-			}= "http://localhost:8080/createTable?table=" + table + "&query=" + query + "&number=" + number;
+			var url = "http://localhost:8080/createTable?table=" + table + "&query=" + query + "&number=" + number;
 						
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
