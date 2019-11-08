@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import br.com.aurum.scriptFormat.model.Add;
+import br.com.aurum.scriptFormat.model.AddColumn;
 
 @RestController
-public class AddRest {
+public class AddColumnRest {
 	
 	@RequestMapping(value="/add")
 	public @ResponseBody String getAdd(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam(defaultValue="1") Integer number) {
-		Add add = new Add().withQuery(query).withTable(table).withColumn(column).withComment(number);
+		AddColumn addColumn = new AddColumn().withQuery(query).withTable(table).withColumn(column).withComment(number);
 		Gson gson = new Gson();
-		return gson.toJson(add);
+		return gson.toJson(addColumn);
 	}
 
 }
