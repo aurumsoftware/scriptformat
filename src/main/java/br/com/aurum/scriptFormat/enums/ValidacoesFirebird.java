@@ -35,16 +35,7 @@ public enum ValidacoesFirebird {
 			"as\n" + 
 			"declare chk int;\n" + 
 			"BEGIN\n" + 
-			" SELECT count(*execute block\n" + 
-			"as\n" + 
-			"declare chk int;\n" + 
-			"BEGIN\n" + 
 			" SELECT count(*) FROM RDB$RELATION_CONSTRAINTS WHERE RDB$CONSTRAINT_NAME = '%s' INTO :chk;    \n" + 
-			" if (chk = 0 ) then\n" + 
-			" begin\n" + 
-			"  	%s\n" + 
-			" end\n" + 
-			"END) FROM RDB$RELATION_CONSTRAINTS WHERE RDB$CONSTRAINT_NAME = '%s' INTO :chk;    \n" + 
 			" if (chk = 0 ) then\n" + 
 			" begin\n" + 
 			"  	%s\n" + 
@@ -87,7 +78,7 @@ public enum ValidacoesFirebird {
 			" SELECT count(*) FROM RDB$RELATION_CONSTRAINTS WHERE RDB$CONSTRAINT_NAME = '%s' INTO :chk;    \n" + 
 			" if (chk = 0 ) then\n" + 
 			" begin\n" + 
-			"  	%s\n" + 
+			"   'ALTER TABLE %s ADD CONSTRAINT %s PRIMARY KEY (%s)';\n" +  
 			" end\n" + 
 			"END");
 	

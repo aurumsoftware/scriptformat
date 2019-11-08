@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import br.com.aurum.scriptFormat.enums.ValidacoesFirebird;
+import br.com.aurum.scriptFormat.enums.ValidacoesOracle;
+import br.com.aurum.scriptFormat.enums.ValidacoesSQL;
+import br.com.aurum.scriptFormat.helper.Replacer;
 import br.com.aurum.scriptFormat.model.AddForeignKey;
 
 @RestController
@@ -15,8 +19,20 @@ public class AddForeignKeyRest {
 	@RequestMapping(value="/addForeignKey")
 	public @ResponseBody String getAddForeignKey(@RequestParam String query, @RequestParam String table, @RequestParam String column, 
 			@RequestParam String name, @RequestParam String columnReferenced, @RequestParam String tableReferenced, @RequestParam String cascade, @RequestParam(defaultValue="1") Integer number) {
-		AddForeignKey addForeignKey = new AddForeignKey().withQuery(query).withTable(table).withColumn(column).withName(name)
-				.withColumnReferenced(columnReferenced).withTableReferenced(tableReferenced).withCascade(cascade).withComment(number);
+		AddForeignKey addForeignKey = new AddForeignKey().withQuery(query).withTable(table).withColumn(column).withName(name).
+				withColumnReferenced(columnReferenced).withTableReferenced(tableReferenced).withCascade(cascade).withComment(number);
+		
+		Replacer replacer = new Replacer();
+		
+		addForeignKey.setFirebird(String.format(ValidacoesFirebird.ADD_FOREIGN_KEY.getValor(), name, 
+				replacer.replaceQueryToFirebird(query.toUpperCase())));
+		
+		addForeignKey.setSqlServer(String.format(ValidacoesSQL.ADD_FOREIGN_KEY.getValor(), name, 
+				replacer.replaceQueryToSqlServer(query.toUpperCase())));
+		
+		addForeignKey.setOracle(String.format(ValidacoesOracle.ADD_FOREIGN_KEY.getValor(), name, 
+				replacer.replaceQueryToOracle(query.toUpperCase())));
+	
 		Gson gson = new Gson();
 		return gson.toJson(addForeignKey);
 	}

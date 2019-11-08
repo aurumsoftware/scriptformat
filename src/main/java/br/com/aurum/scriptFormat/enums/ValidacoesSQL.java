@@ -33,7 +33,7 @@ public enum ValidacoesSQL {
 	
 	DROP_COLUMN("IF (SELECT COUNT(*) COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s' AND COLUMN_NAME = '%s') = 1\n" + 
 			"BEGIN\n" + 
-			"     ALTER TABLE %s DROP COLUMN %s;\n" + 
+			"     %s" + 
 			"END\n" + 
 			"GO"),
 	
