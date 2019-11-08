@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" ng-app="scriptFormatAngular">
+<script th:src="@{/js/angular.min.js}"></script>
+<script th:src="@{/js/angular-locale_pt-br.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/script.js}"></script>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +22,7 @@
 
 </head>
 
-<body>
+<body ng-controller="scriptController">
 
 <!--*******************
     Preloader start
@@ -113,26 +116,20 @@
 
 
 													<option>DROP COLUMN</option><option>DROP CONSTRAINT</option><option>DROP TABLE</option>
-
-
-
-
 												</select>
 
-
-
 											</div>
 
 											<div class="form-group">
-												<label>Tabela</label><input type="text" class="form-control input-default" placeholder="" id="tableScript" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+												<label>Tabela</label><input type="text" class="form-control input-default" ng-model="table" placeholder="" id="tableScript" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
 											</div><div class="form-group">
-											<label>Coluna</label><input type="text" class="form-control input-default" placeholder="" id="columnScript">
-										</div>
-											<div class="form-group">
-												<label>Tipo</label><input type="text" class="form-control input-default" placeholder="" id="typeScript">
+												<label>Coluna</label><input type="text" class="form-control input-default" ng-model="column" placeholder="" id="columnScript">
 											</div>
 											<div class="form-group">
-												<label>Valor</label><input type="text" class="form-control input-default" placeholder="" id="valueScript">
+												<label>Tipo</label><input type="text" class="form-control input-default" ng-model="type" placeholder="" id="typeScript">
+											</div>
+											<div class="form-group">
+												<label>Valor</label><input type="text" class="form-control input-default" ng-model="value" placeholder="" id="valueScript">
 											</div>
 											<div class="form-group">
 												<label>Foreign Key</label><input type="text" class="form-control input-default" placeholder="" id="fkScript">
@@ -159,55 +156,38 @@
 								<!-- Nav tabs -->
 								<div class="default-tab">
 									<ul class="nav nav-tabs mb-3" role="tablist">
-										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home">Meu script</a>
+										<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#query">Meu script</a>
 										</li>
-										<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#profile">Firebird</a>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#firebird" ng-click="insert()">Firebird</a>
 										</li>
-										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#contact">MSSQL</a>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#sqlServer">MSSQL</a>
 										</li>
-										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#message">Oracle</a>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#oracle">Oracle</a>
 										</li>
 									</ul>
 									<div class="tab-content">
-										<div class="tab-pane fade" id="home" role="tabpanel">
+										<div class="tab-pane fade active show" id="query" role="tabpanel">
 											<div class="p-t-15">
 												<form>
 													<div class="form-group">
-
-														<textarea class="form-control h-150px" rows="20" id="script"></textarea>
+														<textarea class="form-control h-150px" rows="20" id="script" ng-model="query"></textarea>
 													</div>
-
-
-
-
-
-
-
-
 												</form>
-
-
-
 											</div>
 										</div>
-										<div class="tab-pane fade active show" id="profile">
+										<div class="tab-pane fade" id="firebird">
 											<div class="p-t-15">
-
-
-
+												<textarea class="form-control h-150px" rows="20">{{dados.firebird}}</textarea>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="contact">
+										<div class="tab-pane fade" id="sqlServer">
 											<div class="p-t-15">
-
-
-
+												<textarea class="form-control h-150px" rows="20">{{dados.sqlServer}}</textarea>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="message">
+										<div class="tab-pane fade" id="oracle">
 											<div class="p-t-15">
-
-
+												<textarea class="form-control h-150px" rows="20">{{dados.oracle}}</textarea>
 
 											</div>
 										</div>

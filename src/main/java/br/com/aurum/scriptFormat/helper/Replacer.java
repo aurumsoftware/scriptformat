@@ -4,7 +4,6 @@ import br.com.aurum.scriptFormat.constants.Firebird;
 import br.com.aurum.scriptFormat.constants.Oracle;
 import br.com.aurum.scriptFormat.constants.SqlServer;
 
-
 public class Replacer {
 
     public String replaceQueryToOracle(String query){
