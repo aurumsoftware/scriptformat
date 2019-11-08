@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,6 @@
 	<link type="text/css" th:href="@{/layout/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css}" rel="stylesheet">
 	<!-- Custom Stylesheet -->
 	<link type="text/css" th:href="@{/layout/css/style.css}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -107,47 +107,64 @@
 										<form _lpchecked="1">
 											<div class="form-group">
 												<label>Tipo do script</label>
-												<select class="form-control" id="typeScriptList">
-													<option>ADD COLUMN</option><option>ADD FOREING KEY</option><option>ADD PRIMARY KEY</option><option>CREATE TABLE</option><option>INSERT INTO</option>
+												<select class="form-control" id="typeScriptList" onchange="exibeCampos()">
+													<option value="addColumn">ADD COLUMN</option>
+													<option value="foreignKey">ADD FOREING KEY</option>
+													<option value="primaryKey">ADD PRIMARY KEY</option>
+													<option value="createTable">CREATE TABLE</option>
+													<option value="insertInto">INSERT INTO</option>
+													<option value="dropColumn">DROP COLUMN</option>
+													<option value="dropConstraint">DROP CONSTRAINT</option>
+													<option value="dropTable">DROP TABLE</option>
+ 												</select>
 
 
 
-													<option>DROP COLUMN</option><option>DROP CONSTRAINT</option><option>DROP TABLE</option>
+											</div>
 
-
-
-
+											<div class="form-group"  id="tableScript">
+												<label>Tabela</label>
+												<input type="text" class="form-control input-default" placeholder="">
+											</div>
+											<div class="form-group" id="columnScript">
+												<label>Coluna</label>
+												<input type="text" class="form-control input-default" placeholder="">
+											</div>
+											<div class="form-group">
+												<label>Tipo</label>
+												<select class="form-control" id="typeScript">
+													<option value="addColumn">CHECK</option>
+													<option value="foreignKey">FOREING KEY</option>
+													<option value="primaryKey">PRIMARY KEY</option>
+													<option value="createTable">UNIQUE KEY</option>
 												</select>
-
-
-
 											</div>
-
-											<div class="form-group">
-												<label>Tabela</label><input type="text" class="form-control input-default" placeholder="" id="tableScript" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-											</div><div class="form-group">
-											<label>Coluna</label><input type="text" class="form-control input-default" placeholder="" id="columnScript">
-										</div>
-											<div class="form-group">
-												<label>Tipo</label><input type="text" class="form-control input-default" placeholder="" id="typeScript">
+											<div class="form-group" id="valueScript">
+												<label>Valor</label>
+												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
-											<div class="form-group">
-												<label>Valor</label><input type="text" class="form-control input-default" placeholder="" id="valueScript">
+											<div class="form-group" id="pkScript">
+												<label>Primary Key</label>
+												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
-											<div class="form-group">
-												<label>Foreign Key</label><input type="text" class="form-control input-default" placeholder="" id="fkScript">
+											<div class="form-group" id="fkScript">
+												<label>Foreign Key</label>
+												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
-											<div class="form-group">
-												<label>Coluna referenciada</label><input type="text" class="form-control input-default" placeholder="" id="refColumnScript">
+											<div class="form-group" id="refColumnScript">
+												<label>Coluna referenciada</label>
+												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
-											<div class="form-group">
-												<label>Tabela referenciada</label><input type="text" class="form-control input-default" placeholder="" id="refTableScript">
+											<div class="form-group" id="refTableScript">
+												<label>Tabela referenciada</label>
+												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
-											<div class="form-group">
-												<label>Cascasde</label><input type="text" class="form-control input-default" placeholder="" id="cascadeScript">
+											<div class="form-group" id="cascadeScript">
+												<label>Cascasde</label>
+												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
-											<div class="form-group">
-												<label>Comentário</label><input type="text" class="form-control input-default" placeholder="" id="commentScript">
+											<div class="form-group" id="commentScript">
+												<label>Comentário</label><input type="text" class="form-control input-default" placeholder="" >
 											</div></form>
 									</div>
 								</div>
@@ -176,14 +193,6 @@
 
 														<textarea class="form-control h-150px" rows="20" id="script"></textarea>
 													</div>
-
-
-
-
-
-
-
-
 												</form>
 
 
@@ -254,6 +263,59 @@
 
 
 <script src="./js/dashboard/dashboard-1.js"></script>
+
+<script type="text/javascript">
+
+function exibeCampos(){
+var type = document.getElementById('typeScriptList').value;
+	$("#tableScript").show();
+	$("#typeScript").hide();
+	$("#refColumnScript").hide();
+	$("#refTableScript").hide();
+	$("#cascadeScript").hide();
+	$("#fkScript").hide();
+	$("#pkScript").hide();
+	$("#valueScript").hide();
+	switch(type) {
+			case "createTable":
+				$("#columnScript").hide();
+			break;
+			case "addColumn":
+				$("#columnScript").show();
+			break;
+			case "foreignKey":
+				$("#columnScript").show();
+				$("#fkScript").show();
+				$("#refColumnScript").show();
+				$("#refTableScript").show();
+				$("#cascadeScript").show();
+			break;
+			case "dropColumn":
+				$("#columnScript").show();
+				$("#valueScript").hide();
+			break;
+			case "dropTable":
+				$("#columnScript").hide();
+			break;
+			case "dropConstraint":
+				$("#typeScript").show();
+				$("#valueScript").show();
+				$("#columnScript").hide();
+			break;
+			case "primaryKey":
+				$("#column").show();
+				$("#pkScript").show();
+			break;
+			case "insertInto":
+				$("#column").show();
+				$("#valueScript").show();
+			break;
+		}
+}
+
+
+</script>
+
 
 </body>
 
