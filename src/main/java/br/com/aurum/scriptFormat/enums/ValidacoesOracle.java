@@ -2,7 +2,7 @@ package br.com.aurum.scriptFormat.enums;
 
 public enum ValidacoesOracle {
 	INSERT_INTO("declare\n chkSeq pls_integer;\n begin\n" + 
-			"     select count(*) into chkSeq from % where %s = '%s';\n" + 
+			"     select count(*) into chkSeq from %s where %s = '%s';\n" + 
 			"     if chkSeq = 0 then\n" + 
 			"       execute immediate\n" + 
 			"       '%s';\n" + 

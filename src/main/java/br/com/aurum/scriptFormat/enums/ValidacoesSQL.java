@@ -1,7 +1,7 @@
 package br.com.aurum.scriptFormat.enums;
 
 public enum ValidacoesSQL {
-	INSERT_INTO("IF (SELECT COUNT(*) FROM TESTE where %s= '%s') = 0\n" + 
+	INSERT_INTO("IF (SELECT COUNT(*) FROM %s where %s= '%s') = 0\n" + 
 			"BEGIN\n" + 
 			"    %s\n" + 
 			"END\n" + 

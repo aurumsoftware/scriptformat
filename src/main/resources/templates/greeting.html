@@ -41,9 +41,9 @@
 									<option value="UQ">Unique key</option>
 								</select>
 							</div>
-							<label class="control-label value" ng-model="value" id="labelValue"><b>Valor</b></label>
+							<label class="control-label value" id="labelValue"><b>Valor</b></label>
 							<div class="controls">
-								<input type="text" id="value" maxlength="30" class="input-block-level value" name="value" >
+								<input type="text" id="value" ng-model="value" maxlength="30" class="input-block-level value" name="value" >
 							</div>
 							<label class="control-label visivel" id="labelValue2" ><b>Coluna referenciada</b></label>
 							<div class="controls visivel">
@@ -132,7 +132,7 @@
 						<b>Firebird</b>
 					</div>
 					<div class="module-body">
-						<b id="resultadoFirebird" style="white-space: pre-line;">{{dados.query}}</b>
+						<b id="resultadoFirebird" style="white-space: pre-line;">{{dados.firebird}}</b>
 					</div>
 				</section>
 				<section class="module">	
@@ -140,7 +140,7 @@
 						<b>SQL Server</b>
 					</div>
 					<div class="module-body">
-						<b id="resultadoSqlServer" style="white-space: pre-line;">{{dados.query}}</b>
+						<b id="resultadoSqlServer" style="white-space: pre-line;">{{dados.sqlServer}}</b>
 					</div>
 				</section>
 				<section class="module">				
@@ -148,7 +148,7 @@
 						<b>Oracle</b>
 					</div>
 					<div class="module-body">
-						<b id="resultadoOracle" style="white-space: pre-line;">{{dados.query}}</b>
+						<b id="resultadoOracle" style="white-space: pre-line;">{{dados.oracle}}</b>
 					</div>
 				</section>
 			</section>
