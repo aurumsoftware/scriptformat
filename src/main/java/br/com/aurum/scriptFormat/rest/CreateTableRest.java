@@ -14,8 +14,8 @@ import br.com.aurum.scriptFormat.model.Insert;
 public class CreateTableRest {
 	
 	@RequestMapping(value="/createTable")
-	public @ResponseBody String getInsert(@RequestParam String query, @RequestParam String table) {
-		CreateTable createTable =new CreateTable().withQuery(query).havingTable(table);
+	public @ResponseBody String getInsert(@RequestParam String query, @RequestParam String table, @RequestParam(defaultValue="1") Integer number) {
+		CreateTable createTable =new CreateTable().withQuery(query).havingTable(table).withComment(number);
 		Gson gson = new Gson();
 		return gson.toJson(createTable);
 	}

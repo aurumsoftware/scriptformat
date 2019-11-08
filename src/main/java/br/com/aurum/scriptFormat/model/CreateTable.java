@@ -6,6 +6,8 @@ public class CreateTable {
 	
 	private String table;
 	
+	private String comment;
+	
 	public CreateTable() {}
 	
 	public CreateTable havingTable(String table) {
@@ -15,6 +17,12 @@ public class CreateTable {
 	
 	public CreateTable withQuery(String query) {
 		setQuery(query);
+		return this;
+	}
+	
+	public CreateTable withComment(Integer number) {
+		String text = "-- " + number + " Criação da tabela " + getTable();
+		setComment(text);
 		return this;
 	}
 
@@ -32,6 +40,14 @@ public class CreateTable {
 
 	public void setTable(String table) {
 		this.table = table;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }
