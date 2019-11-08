@@ -11,13 +11,13 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		var tableReferenced = $scope.tableReferenced;
 		
 		if (type == 'addColumn') {
-			var url = "http://localhost:8080/addColumn?query=" + query + "&table=" + table + "&column=" + column + "&number=" + number;
+			var url = "http://localhost:8080/addColumn?query=" + query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a") + "&table=" + table + "&column=" + column + "&number=" + number;
 						
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}
+		
 		
 		if (type == 'addForeignKey') {
 			var url = "http://localhost:8080/addForeignKey?query=" + query + "&table=" + table + "&name=" + value
@@ -26,8 +26,8 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}
+		
 
 		if (type == 'addPrimaryKey') {
 			var url = "http://localhost:8080/addPrimaryKey?table=" + table + "&name=" + value
@@ -36,16 +36,23 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}
 		
+		
 		if (type == 'createTable') {
-			var url = "http://localhost:8080/createTable?table=" + table + "&query=" + query + "&number=" + number;
+			var url String.prototype.replaceAll = function(de, para){
+			    var str = this;
+			    var pos = str.indexOf(de);
+			    while (pos > -1){
+					str = str.replace(de, para);
+					pos = str.indexOf(de);
+				}
+			    return (str);
+			}= "http://localhost:8080/createTable?table=" + table + "&query=" + query + "&number=" + number;
 						
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}
 		
 		if (type == 'dropColumn') {
@@ -54,7 +61,6 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}
 
 		if (type == 'dropConstraint') {
@@ -63,7 +69,6 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}		
 	
 		if (type == 'dropTable') {
@@ -72,7 +77,6 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}			
 	
 		if (type == 'insert') {
@@ -81,7 +85,18 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
 				});
-			};
 		}
+		
+	}
+	
+	String.prototype.replaceAll = function(de, para){
+	    var str = this;
+	    var pos = str.indexOf(de);
+	    while (pos > -1){
+			str = str.replace(de, para);
+			pos = str.indexOf(de);
+		}
+	    return (str);
+	}
 		
 }]);
