@@ -21,12 +21,11 @@ public class InsertRest {
 	@RequestMapping(value="/insert")
 	public @ResponseBody String getInsert(@RequestParam String query, @RequestParam String table, @RequestParam String column,
 										  @RequestParam String value, @RequestParam Integer number) {
-
 		Insert insert = new Insert().withQuery(query).withTable(table).withColumn(column).havingValue(value).withComment(number);
 		Replacer replacer = new Replacer();
 		
 		insert.setSqlServer(String.format(ValidacoesFirebird.INSERT_INTO.getValor(), table, column, value,
-				replacer.replaceQueryToSqlServer(query.toUpperCase())));
+				replacer.replaceQueryToFirebird(query.toUpperCase())));
 		insert.setSqlServer(String.format(ValidacoesSQL.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToSqlServer(query.toUpperCase())));
 		insert.setOracle(String.format(ValidacoesOracle.INSERT_INTO.getValor(), table, column, value,
