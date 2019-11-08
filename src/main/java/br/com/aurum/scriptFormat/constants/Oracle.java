@@ -2,8 +2,7 @@ package br.com.aurum.scriptFormat.constants;
 
 public enum Oracle {
     INTEGER("NUMBER(8)"),
-    SMALLDATETIME("TIMESTAMP"),
-    DATE("TIMESTAMP"),
+    DATE("DATE"),
     BLOB("CLOB"),
     TEXT("CLOB");
 
