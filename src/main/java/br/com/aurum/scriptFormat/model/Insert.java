@@ -33,6 +33,12 @@ public class Insert {
 		setQuery(query);
 		return this;
 	}
+	
+	public Insert withComment(Integer number) {
+		String text = "-- " + number + " Inserção do registro " + getValue() + " na tabela " + getTable();
+		setComment(text);
+		return this;
+	}
 
 	public String getQuery() {
 		return query;
