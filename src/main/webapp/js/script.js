@@ -1,5 +1,12 @@
 app.controller('scriptController', ['$scope', '$http', '$window', 'utilService', function($scope, $http, $window, utilService) {
 	
+	String.prototype.replaceAll = function(search, replace)	{
+		if (replace === undefined) {
+			return this.toString().toUpperCase();
+		}
+		return this.replace(new RegExp(search, 'gi'), replace);
+	};
+	
 	$scope.getQuery = function() {
 		var table = $scope.table;
 		var column = $scope.column;
@@ -9,9 +16,10 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		var type = $scope.type;
 		var columnReferenced = $scope.columnReferenced;
 		var tableReferenced = $scope.tableReferenced;
+		query = query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a");
 		
 		if (type == 'addColumn') {
-			var url = "http://localhost:8080/addColumn?query=" + query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a") + "&table=" + table + "&column=" + column + "&number=" + number;
+			var url = "http://localhost:8080/addColumn?query=" + query + "&table=" + table + "&column=" + column + "&number=" + number;
 						
 				$http.get(url).success(function(data) {
 					$scope.dados = data;		
@@ -80,15 +88,4 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		}
 		
 	}
-	
-	String.prototype.replaceAll = function(de, para){
-	    var str = this;
-	    var pos = str.indexOf(de);
-	    while (pos > -1){
-			str = str.replace(de, para);
-			pos = str.indexOf(de);
-		}
-	    return (str);
-	}
-		
 }]);

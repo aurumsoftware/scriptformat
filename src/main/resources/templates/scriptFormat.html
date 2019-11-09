@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-
-
+<html lang="pt-br" ng-app="scriptFormatAngular">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+	<title>Script Format</title>
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
 	<!-- Pignose Calender -->
@@ -17,9 +15,13 @@
 	<link type="text/css" th:href="@{/layout/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css}" rel="stylesheet">
 	<!-- Custom Stylesheet -->
 	<link type="text/css" th:href="@{/layout/css/style.css}" rel="stylesheet">
+	<script th:src="@{/js/angular.min.js}"></script>
+	<script th:src="@{/js/angular-locale_pt-br.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/script.js}"></script>
 </head>
 
-<body>
+<body ng-controller="scriptController">
 
 <!--*******************
     Preloader start
@@ -107,7 +109,7 @@
 										<form _lpchecked="1">
 											<div class="form-group">
 												<label>Tipo do script</label>
-												<select class="form-control" id="typeScriptList" onchange="exibeCampos()">
+												<select class="form-control" id="typeScriptList" ng-change="getQuery()" onchange="exibeCampos()" ng-model="type">
 													<option value="addColumn">ADD COLUMN</option>
 													<option value="foreignKey">ADD FOREING KEY</option>
 													<option value="primaryKey">ADD PRIMARY KEY</option>
@@ -117,29 +119,26 @@
 													<option value="dropConstraint">DROP CONSTRAINT</option>
 													<option value="dropTable">DROP TABLE</option>
  												</select>
-
-
-
 											</div>
 
 											<div class="form-group"  id="tableScript">
 												<label>Tabela</label>
-												<input type="text" class="form-control input-default" placeholder="">
+												<input type="text" class="form-control input-default" ng-model="table" placeholder="">
 											</div>
 											<div class="form-group" id="columnScript">
 												<label>Coluna</label>
-												<input type="text" class="form-control input-default" placeholder="">
+												<input type="text" class="form-control input-default" ng-model="column" placeholder="">
 											</div>
-											<div class="form-group">
+											<div class="form-group" id="typeScript">
 												<label>Tipo</label>
-												<select class="form-control" id="typeScript">
+												<select class="form-control">
 													<option value="addColumn">CHECK</option>
 													<option value="foreignKey">FOREING KEY</option>
 													<option value="primaryKey">PRIMARY KEY</option>
 													<option value="createTable">UNIQUE KEY</option>
 												</select>
 											</div>
-											<div class="form-group" id="valueScript">
+											<div class="form-group" id="valueScript" ng-model="value">
 												<label>Valor</label>
 												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
@@ -160,11 +159,11 @@
 												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
 											<div class="form-group" id="cascadeScript">
-												<label>Cascasde</label>
+												<label>Cascade</label>
 												<input type="text" class="form-control input-default" placeholder="" >
 											</div>
 											<div class="form-group" id="commentScript">
-												<label>Comentário</label><input type="text" class="form-control input-default" placeholder="" >
+												<label>Comentário</label><input type="number" class="form-control input-default" ng-model="number" placeholder="" >
 											</div></form>
 									</div>
 								</div>
@@ -176,48 +175,38 @@
 								<!-- Nav tabs -->
 								<div class="default-tab">
 									<ul class="nav nav-tabs mb-3" role="tablist">
-										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home">Meu script</a>
+										<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#query">Meu script</a>
 										</li>
-										<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#profile">Firebird</a>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#firebird">Firebird</a>
 										</li>
-										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#contact">MSSQL</a>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#sqlServer">MSSQL</a>
 										</li>
-										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#message">Oracle</a>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#oracle">Oracle</a>
 										</li>
 									</ul>
 									<div class="tab-content">
-										<div class="tab-pane fade" id="home" role="tabpanel">
+										<div class="tab-pane fade active show" id="query" role="tabpanel">
 											<div class="p-t-15">
 												<form>
 													<div class="form-group">
-
-														<textarea class="form-control h-150px" rows="20" id="script"></textarea>
+														<textarea class="form-control h-150px" rows="20" id="script" ng-model="query"></textarea>
 													</div>
 												</form>
-
-
-
 											</div>
 										</div>
-										<div class="tab-pane fade active show" id="profile">
+										<div class="tab-pane fade" id="firebird">
 											<div class="p-t-15">
-
-
-
+												<textarea class="form-control h-150px" rows="20" disabled="disabled">{{dados.firebird}}</textarea>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="contact">
+										<div class="tab-pane fade" id="sqlServer">
 											<div class="p-t-15">
-
-
-
+												<textarea class="form-control h-150px" rows="20" disabled="disabled">{{dados.sqlServer}}</textarea>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="message">
+										<div class="tab-pane fade" id="oracle">
 											<div class="p-t-15">
-
-
-
+												<textarea class="form-control h-150px" rows="20" disabled="disabled">{{dados.oracle}}</textarea>
 											</div>
 										</div>
 									</div>

@@ -22,9 +22,9 @@ public class InsertRest {
 		Insert insert = new Insert().withQuery(query).withTable(table).withColumn(column).havingValue(value).withComment(number);
 		
 		Replacer replacer = new Replacer();
-		insert.setSqlServer(String.format(ValidacoesFirebird.INSERT_INTO.getValor(), table, column, value,
+		insert.setFirebird(String.format(ValidacoesFirebird.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToSqlServer(query.toUpperCase())));
-		insert.setFirebird(String.format(ValidacoesSQL.INSERT_INTO.getValor(), table, column, value,
+		insert.setSqlServer(String.format(ValidacoesSQL.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToFirebird(query.toUpperCase())));
 		insert.setOracle(String.format(ValidacoesOracle.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToOracle(query.toUpperCase())));

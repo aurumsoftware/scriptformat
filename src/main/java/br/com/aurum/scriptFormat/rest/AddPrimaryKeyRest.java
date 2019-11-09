@@ -10,7 +10,6 @@ import com.google.gson.Gson;
 import br.com.aurum.scriptFormat.enums.ValidacoesFirebird;
 import br.com.aurum.scriptFormat.enums.ValidacoesOracle;
 import br.com.aurum.scriptFormat.enums.ValidacoesSQL;
-import br.com.aurum.scriptFormat.helper.Replacer;
 import br.com.aurum.scriptFormat.model.AddPrimaryKey;
 
 @RestController

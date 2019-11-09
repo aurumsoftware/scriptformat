@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 
 import br.com.aurum.scriptFormat.enums.ValidacoesFirebird;
+import br.com.aurum.scriptFormat.enums.ValidacoesOracle;
 import br.com.aurum.scriptFormat.enums.ValidacoesSQL;
 import br.com.aurum.scriptFormat.helper.Replacer;
 import br.com.aurum.scriptFormat.model.CreateTable;
@@ -27,7 +28,7 @@ public class CreateTableRest {
 		createTable.setSqlServer(String.format(ValidacoesSQL.CREATE_TABLE.getValor(), table, 
 				replacer.replaceQueryToSqlServer(query.toUpperCase())));
 		
-		createTable.setOracle(String.format(ValidacoesFirebird.CREATE_TABLE.getValor(), table, 
+		createTable.setOracle(String.format(ValidacoesOracle.CREATE_TABLE.getValor(), table, 
 				replacer.replaceQueryToOracle(query.toUpperCase())));
 		
 		
