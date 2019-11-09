@@ -64,8 +64,8 @@
 												<label>Tipo do script</label>
 												<select class="form-control" id="typeScriptList" onchange="exibeCampos()" ng-model="type">
 													<option value="addColumn">ADD COLUMN</option>
-													<option value="foreignKey">ADD FOREING KEY</option>
-													<option value="primaryKey">ADD PRIMARY KEY</option>
+													<option value="addForeignKey">ADD FOREING KEY</option>
+													<option value="addPrimaryKey">ADD PRIMARY KEY</option>
 													<option value="createTable">CREATE TABLE</option>
 													<option value="insertInto">INSERT INTO</option>
 													<option value="dropColumn">DROP COLUMN</option>
@@ -86,34 +86,14 @@
 												<label>Tipo</label>
 												<select class="form-control">
 													<option value="addColumn">CHECK</option>
-													<option value="foreignKey">FOREING KEY</option>
-													<option value="primaryKey">PRIMARY KEY</option>
+													<option value="addForeignKey">FOREING KEY</option>
+													<option value="addPrimaryKey">PRIMARY KEY</option>
 													<option value="createTable">UNIQUE KEY</option>
 												</select>
 											</div>
-											<div class="form-group" id="valueScript" ng-model="value">
-												<label>Valor</label>
-												<input type="text" class="form-control input-default" placeholder="">
-											</div>
-											<div class="form-group" id="pkScript">
-												<label>Primary Key</label>
-												<input type="text" class="form-control input-default" placeholder="">
-											</div>
-											<div class="form-group" id="fkScript">
-												<label>Foreign Key</label>
-												<input type="text" class="form-control input-default" placeholder="">
-											</div>
-											<div class="form-group" id="refColumnScript">
-												<label>Coluna referenciada</label>
-												<input type="text" class="form-control input-default" placeholder="">
-											</div>
-											<div class="form-group" id="refTableScript">
-												<label>Tabela referenciada</label>
-												<input type="text" class="form-control input-default" placeholder="">
-											</div>
-											<div class="form-group" id="cascadeScript">
-												<label>Cascade</label>
-												<input type="text" class="form-control input-default" placeholder="">
+											<div class="form-group" id="valueScript">
+												<label id="txtValueScript">Valor</label>
+												<input type="text" class="form-control input-default"  ng-model="value" placeholder="">
 											</div>
 <!-- 											<div class="form-group" id="commentScript"> -->
 <!-- 												<label>Comentário</label> -->
@@ -214,12 +194,8 @@ function exibeCampos(){
 var type = document.getElementById('typeScriptList').value;
 	$("#tableScript").show();
 	$("#typeScript").hide();
-	$("#refColumnScript").hide();
-	$("#refTableScript").hide();
-	$("#cascadeScript").hide();
-	$("#fkScript").hide();
-	$("#pkScript").hide();
 	$("#valueScript").hide();
+	$("#txtValueScript").text("Valor");
 	switch(type) {
 			case "createTable":
 				$("#columnScript").hide();
@@ -227,12 +203,11 @@ var type = document.getElementById('typeScriptList').value;
 			case "addColumn":
 				$("#columnScript").show();
 			break;
-			case "foreignKey":
-				$("#columnScript").show();
-				$("#fkScript").show();
-				$("#refColumnScript").show();
-				$("#refTableScript").show();
-				$("#cascadeScript").show();
+			case "addForeignKey":
+				$("#columnScript").hide();
+				$("#tableScript").hide();
+				$("#txtValueScript").text("Foreign Key");
+				$("#valueScript").show();
 			break;
 			case "dropColumn":
 				$("#columnScript").show();
@@ -246,9 +221,8 @@ var type = document.getElementById('typeScriptList').value;
 				$("#valueScript").show();
 				$("#columnScript").hide();
 			break;
-			case "primaryKey":
+			case "addPrimaryKey":
 				$("#column").show();
-				$("#pkScript").show();
 			break;
 			case "insertInto":
 				$("#column").show();

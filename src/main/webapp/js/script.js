@@ -21,20 +21,19 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		
 		if (type == 'addColumn') {
 			var url = "http://localhost:8080/addColumn?query=" + query + "&table=" + table + "&column=" + column;
-						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+					
+			$http.get(url).success(function(data) {
+				$scope.dados = data;		
+			});
 		}
 		
 		
 		if (type == 'addForeignKey') {
-			var url = "http://localhost:8080/addForeignKey?query=" + query + "&table=" + table + "&name=" + value
-			+ "&columnReferenced=" + columnReferenced + "&tableReferenced=" + tableReferenced;
+			var url = "http://localhost:8080/addForeignKey?query=" + query + "&name=" + value;
 						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+			$http.get(url).success(function(data) {
+				$scope.dados = data;		
+			});
 		}
 		
 
