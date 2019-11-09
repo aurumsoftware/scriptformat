@@ -17,17 +17,20 @@ import br.com.aurum.scriptFormat.model.AddColumn;
 public class AddColumnRest {
 	
 	@RequestMapping(value="/addColumn")
-	public @ResponseBody String getAddColumn(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam(defaultValue="1") Integer number) {
-		AddColumn addColumn = new AddColumn().withQuery(query).withTable(table).withColumn(column).withComment(number);
+	public @ResponseBody String getAddColumn(@RequestParam String query, @RequestParam String table, @RequestParam String column) {
+		AddColumn addColumn = new AddColumn().withQuery(query).withTable(table).withColumn(column);
 		Replacer replacer = new Replacer();
+		
 		addColumn.setFirebird(String.format(ValidacoesFirebird.ADD_COLUMN.getValor(), table, column,
-				replacer.replaceQueryToSqlServer(query.toUpperCase())));
-		addColumn.setSqlServer(String.format(ValidacoesSQL.ADD_COLUMN.getValor(), table,column,
 				replacer.replaceQueryToFirebird(query.toUpperCase())));
-		addColumn.setOracle(String.format(ValidacoesOracle.ADD_COLUMN.getValor(), table,column,
+		
+		addColumn.setSqlServer(String.format(ValidacoesSQL.ADD_COLUMN.getValor(), table, column,
+				replacer.replaceQueryToSqlServer(query.toUpperCase())));
+						
+		addColumn.setOracle(String.format(ValidacoesOracle.ADD_COLUMN.getValor(), table, column,
 				replacer.replaceQueryToOracle(query.toUpperCase())));
-		Gson gson = new Gson();
-		return gson.toJson(addColumn);
+		
+		return new Gson().toJson(addColumn);
 	}
 
 }

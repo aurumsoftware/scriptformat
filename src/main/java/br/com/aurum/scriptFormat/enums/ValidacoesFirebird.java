@@ -25,7 +25,7 @@ public enum ValidacoesFirebird {
 			"as\n" + 
 			"declare chk int;\n" + 
 			"BEGIN\n" + 
-			" SELECT count(*) FROM RDB$RELATION_FIELDS WHERE RDB$FIELD_NAME = '%s' AND RDB$RELATION_NAME = '%s' INTO :chk;    \n" + 
+			" SELECT count(*) FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME = '%s' AND RDB$FIELD_NAME = '%s' INTO :chk;    \n" + 
 			" if (chk = 0 ) then\n" + 
 			" begin\n" + 
 			"  	%s\n" + 
