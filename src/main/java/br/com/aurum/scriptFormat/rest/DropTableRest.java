@@ -19,9 +19,9 @@ public class DropTableRest {
 	public @ResponseBody String getDropTable(@RequestParam String table) {
 		DropTable dropTable = new DropTable().havingTable(table);
 		
-		dropTable.setFirebird(String.format(ValidacoesFirebird.DROP_TABLE.getValor(), table));
-		dropTable.setSqlServer(String.format(ValidacoesSQL.DROP_TABLE.getValor(), table));
-		dropTable.setOracle(String.format(ValidacoesOracle.DROP_TABLE.getValor(), table));
+		dropTable.setFirebird(String.format(ValidacoesFirebird.DROP_TABLE.getValor(), table, table));
+		dropTable.setSqlServer(String.format(ValidacoesSQL.DROP_TABLE.getValor(), table, table));
+		dropTable.setOracle(String.format(ValidacoesOracle.DROP_TABLE.getValor(), table, table));
 		
 		return new Gson().toJson(dropTable);
 	}

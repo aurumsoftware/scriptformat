@@ -17,35 +17,35 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		
 		var url = "";
 		if (type == 'addColumn') {
-			url = "http://localhost:8080/addColumn?query=" + query + "&table=" + table + "&column=" + column;
+			url = "/addColumn?query=" + query + "&table=" + table + "&column=" + column;
 		}
 		
 		if (type == 'addForeignKey') {
-			url = "http://localhost:8080/addForeignKey?query=" + query + "&name=" + value;
+			url = "/addForeignKey?query=" + query + "&name=" + value;
 		}
 		
 		if (type == 'addPrimaryKey') {
-			url = "http://localhost:8080/addPrimaryKey?table=" + table + "&name=" + value + "&column=" + column;
+			url = "/addPrimaryKey?table=" + table + "&name=" + value + "&column=" + column;
 		}
 		
 		if (type == 'createTable') {
-			url = "http://localhost:8080/createTable?table=" + table + "&query=" + query;
+			url = "/createTable?table=" + table + "&query=" + query;
 		}
 		
 		if (type == 'dropColumn') {
-			url = "http://localhost:8080/dropColumn?table=" + table + "&query=" + query + "&column=" + column;
+			url = "/dropColumn?table=" + table + "&query=" + query + "&column=" + column;
 		}
 
 		if (type == 'dropConstraint') {
-			url = "http://localhost:8080/dropConstraint?query=" + query + "&name=" + value;
+			url = "/dropConstraint?query=" + query + "&name=" + value;
 		}		
 	
 		if (type == 'dropTable') {
-			url = "http://localhost:8080/dropTable?table=" + table;
+			url = "/dropTable?table=" + table;
 		}			
 	
 		if (type == 'insertInto') {
-			url = "http://localhost:8080/insertInto?query=" + query + "&table=" + table + "&column=" + column + "&value=" + value;
+			url = "/insertInto?query=" + query + "&table=" + table + "&column=" + column + "&value=" + value;
 		}
 		
 		if (url != "") {

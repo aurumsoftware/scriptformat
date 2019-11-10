@@ -74,15 +74,15 @@
  												</select>
 											</div>
 
-											<div class="form-group"  id="tableScript">
+											<div class="form-group"  id="tableScript" style="display: none;">
 												<label>Tabela</label>
 												<input type="text" class="form-control input-default" ng-model="table" placeholder="">
 											</div>
-											<div class="form-group" id="columnScript">
+											<div class="form-group" id="columnScript" style="display: none;">
 												<label>Coluna</label>
 												<input type="text" class="form-control input-default" ng-model="column" placeholder="">
 											</div>
-											<div class="form-group" id="valueScript">
+											<div class="form-group" id="valueScript" style="display: none;">
 												<label id="txtValueScript">Valor</label>
 												<input type="text" class="form-control input-default"  ng-model="value" placeholder="">
 											</div>
@@ -116,7 +116,7 @@
 												<div class="p-t-15">
 													<form>
 														<div class="form-group">
-															<textarea class="form-control h-150px" rows="20" id="script" ng-model="query"></textarea>
+															<textarea class="form-control h-150px" rows="20" id="script" ng-model="query" disabled="disabled"></textarea>
 														</div>
 													</form>
 												</div>
@@ -204,6 +204,7 @@ var type = document.getElementById('typeScriptList').value;
 				$("#valueScript").hide();
 			break;
 			case "dropTable":
+				$("#tableScript").show();
 				$("#script").prop('disabled', true);
 			break;
 			case "dropConstraint":

@@ -48,7 +48,7 @@ public enum ValidacoesFirebird {
 			" SELECT count(*) from RDB$RELATIONS WHERE RDB$RELATION_NAME = '%s' INTO :chk; \n" + 
 			" if (chk = 1) then\n" + 
 			" begin\n" + 
-			"    DROP TABLE %s\n" + 
+			"    DROP TABLE %s \n" + 
 			" end\n" + 
 			"END"),
 	DROP_COLUMN("execute block\n" + 
