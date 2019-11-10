@@ -16,13 +16,13 @@ import br.com.aurum.scriptFormat.model.DropColumn;
 public class DropColumnRest {
 	
 	@RequestMapping(value="/dropColumn")
-	public @ResponseBody String getDropColumn(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam(defaultValue="1") Integer number) {
-		DropColumn dropColumn = new DropColumn().withQuery(query).havingTable(table).withColumn(column).withComment(number);
+	public @ResponseBody String getDropColumn(@RequestParam String query, @RequestParam String table, @RequestParam String column) {
+		DropColumn dropColumn = new DropColumn().withQuery(query).havingTable(table).withColumn(column);
 		
 		Replacer replacer = new Replacer();
 		
 		dropColumn.setFirebird(String.format(ValidacoesFirebird.DROP_COLUMN.getValor(), 
-				column, table, replacer.replaceQueryToFirebird(query.toUpperCase())));
+				table, column, replacer.replaceQueryToFirebird(query.toUpperCase())));
 		
 		dropColumn.setSqlServer(String.format(ValidacoesSQL.DROP_COLUMN.getValor(), 
 				table, column, replacer.replaceQueryToSqlServer(query.toUpperCase())));
