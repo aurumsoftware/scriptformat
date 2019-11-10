@@ -16,20 +16,19 @@ import br.com.aurum.scriptFormat.model.Insert;
 @RestController
 public class InsertRest {
 
-	@RequestMapping(value="/insert")
-	public @ResponseBody String getInsert(@RequestParam String query, @RequestParam String table, @RequestParam String column,
-										  @RequestParam String value, @RequestParam Integer number) {
-		Insert insert = new Insert().withQuery(query).withTable(table).withColumn(column).havingValue(value).withComment(number);
+	@RequestMapping(value="/insertInto")
+	public @ResponseBody String getInsert(@RequestParam String query, @RequestParam String table, @RequestParam String column, @RequestParam String value) {
+		Insert insert = new Insert().withQuery(query).withTable(table).withColumn(column).havingValue(value);
 		
 		Replacer replacer = new Replacer();
 		insert.setFirebird(String.format(ValidacoesFirebird.INSERT_INTO.getValor(), table, column, value,
-				replacer.replaceQueryToSqlServer(query.toUpperCase())));
-		insert.setSqlServer(String.format(ValidacoesSQL.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToFirebird(query.toUpperCase())));
+		insert.setSqlServer(String.format(ValidacoesSQL.INSERT_INTO.getValor(), table, column, value,
+				replacer.replaceQueryToSqlServer(query.toUpperCase())));
 		insert.setOracle(String.format(ValidacoesOracle.INSERT_INTO.getValor(), table, column, value,
 				replacer.replaceQueryToOracle(query.toUpperCase())));
-		Gson gson = new Gson();
-		return gson.toJson(insert);
+		
+		return new Gson().toJson(insert);
 	}
 
 }

@@ -14,26 +14,19 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		var query = $scope.query == undefined ? "" : $scope.query;
 //		var number = $scope.number == undefined ? 1 : $scope.number;
 		var type = $scope.type == undefined ? "" : $scope.type;
-		var columnReferenced = $scope.columnReferenced == undefined ? "" : $scope.columnReferenced;
-		var tableReferenced = $scope.tableReferenced == undefined ? "" : $scope.tableReferenced;
 		
-//		query = query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a");
-//		query = query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a");
 		var url = "";
 		if (type == 'addColumn') {
 			url = "http://localhost:8080/addColumn?query=" + query + "&table=" + table + "&column=" + column;
 		}
 		
-		
 		if (type == 'addForeignKey') {
 			url = "http://localhost:8080/addForeignKey?query=" + query + "&name=" + value;
 		}
 		
-
 		if (type == 'addPrimaryKey') {
 			url = "http://localhost:8080/addPrimaryKey?table=" + table + "&name=" + value + "&column=" + column;
 		}
-		
 		
 		if (type == 'createTable') {
 			url = "http://localhost:8080/createTable?table=" + table + "&query=" + query;
@@ -44,15 +37,15 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		}
 
 		if (type == 'dropConstraint') {
-			url = "http://localhost:8080/dropConstraint?table=" + table + "&query=" + query + "&name=" + value;
+			url = "http://localhost:8080/dropConstraint?query=" + query + "&name=" + value;
 		}		
 	
 		if (type == 'dropTable') {
-			url = "http://localhost:8080/dropTable?table=" + table + "&query=" + query;
+			url = "http://localhost:8080/dropTable?table=" + table;
 		}			
 	
-		if (type == 'insert') {
-			url = "http://localhost:8080/insert?query=" + query + "&table=" + table + "&column=" + column + "&value=" + value;
+		if (type == 'insertInto') {
+			url = "http://localhost:8080/insertInto?query=" + query + "&table=" + table + "&column=" + column + "&value=" + value;
 		}
 		
 		if (url != "") {

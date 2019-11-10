@@ -31,8 +31,7 @@ public class CreateTableRest {
 		createTable.setOracle(String.format(ValidacoesOracle.CREATE_TABLE.getValor(), table, 
 				replacer.replaceQueryToOracle(query.toUpperCase())));
 		
-		Gson gson = new Gson();
-		return gson.toJson(createTable);
+		return new Gson().toJson(createTable);
 	}
 
 }

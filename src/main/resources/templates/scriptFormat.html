@@ -67,10 +67,10 @@
 													<option value="addForeignKey">ADD FOREING KEY</option>
 													<option value="addPrimaryKey">ADD PRIMARY KEY</option>
 													<option value="createTable">CREATE TABLE</option>
-													<option value="insertInto">INSERT INTO</option>
 													<option value="dropColumn">DROP COLUMN</option>
 													<option value="dropConstraint">DROP CONSTRAINT</option>
 													<option value="dropTable">DROP TABLE</option>
+													<option value="insertInto">INSERT INTO</option>
  												</select>
 											</div>
 
@@ -81,15 +81,6 @@
 											<div class="form-group" id="columnScript">
 												<label>Coluna</label>
 												<input type="text" class="form-control input-default" ng-model="column" placeholder="">
-											</div>
-											<div class="form-group" id="typeScript">
-												<label>Tipo</label>
-												<select class="form-control">
-													<option value="addColumn">CHECK</option>
-													<option value="addForeignKey">FOREING KEY</option>
-													<option value="addPrimaryKey">PRIMARY KEY</option>
-													<option value="createTable">UNIQUE KEY</option>
-												</select>
 											</div>
 											<div class="form-group" id="valueScript">
 												<label id="txtValueScript">Valor</label>
@@ -193,19 +184,17 @@
 function exibeCampos(){
 var type = document.getElementById('typeScriptList').value;
 	$("#tableScript").show();
-	$("#typeScript").hide();
 	$("#valueScript").hide();
 	$("#txtValueScript").text("Valor");
 	$("#script").prop('disabled', false);
+	$("#columnScript").hide();
 	switch(type) {
 			case "createTable":
-				$("#columnScript").hide();
 			break;
 			case "addColumn":
 				$("#columnScript").show();
 			break;
 			case "addForeignKey":
-				$("#columnScript").hide();
 				$("#tableScript").hide();
 				$("#txtValueScript").text("Foreign Key");
 				$("#valueScript").show();
@@ -215,12 +204,11 @@ var type = document.getElementById('typeScriptList').value;
 				$("#valueScript").hide();
 			break;
 			case "dropTable":
-				$("#columnScript").hide();
+				$("#script").prop('disabled', true);
 			break;
 			case "dropConstraint":
-				$("#typeScript").show();
 				$("#valueScript").show();
-				$("#columnScript").hide();
+				$("#tableScript").hide();
 			break;
 			case "addPrimaryKey":
 				$("#columnScript").show();

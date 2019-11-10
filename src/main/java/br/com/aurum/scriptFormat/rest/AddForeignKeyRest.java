@@ -31,8 +31,7 @@ public class AddForeignKeyRest {
 		addForeignKey.setOracle(String.format(ValidacoesOracle.ADD_FOREIGN_KEY.getValor(), name, 
 				replacer.replaceQueryToOracle(query.toUpperCase())));
 	
-		Gson gson = new Gson();
-		return gson.toJson(addForeignKey);
+		return new Gson().toJson(addForeignKey);
 	}
 
 }

@@ -30,7 +30,6 @@ public class DropColumnRest {
 		dropColumn.setOracle(String.format(ValidacoesOracle.DROP_COLUMN.getValor(), 
 				table, column, replacer.replaceQueryToOracle(query.toUpperCase())));
 		
-		Gson gson = new Gson();
-		return gson.toJson(dropColumn);
+		return new Gson().toJson(dropColumn);
 	}
 }

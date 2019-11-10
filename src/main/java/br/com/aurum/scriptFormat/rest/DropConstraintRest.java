@@ -17,10 +17,11 @@ import br.com.aurum.scriptFormat.model.DropConstraint;
 public class DropConstraintRest {
 	
 	@RequestMapping(value="/dropConstraint")
-	public @ResponseBody String getDropConstraint(@RequestParam String query, @RequestParam String table, @RequestParam String name, @RequestParam String type, @RequestParam(defaultValue="1") Integer number) {
-		DropConstraint dropConstraint = new DropConstraint().withQuery(query).havingTable(table).withName(name).withType(type).withComment(number);
+	public @ResponseBody String getDropConstraint(@RequestParam String query, @RequestParam String name) {
+		DropConstraint dropConstraint = new DropConstraint().withQuery(query);
 		
 		Replacer replacer = new Replacer();
+		
 		dropConstraint.setFirebird(String.format(ValidacoesFirebird.DROP_CONSTRAINT.getValor(), name,
 				replacer.replaceQueryToFirebird(query.toUpperCase())));
 		dropConstraint.setSqlServer(String.format(ValidacoesSQL.DROP_CONSTRAINT.getValor(), name,
@@ -28,7 +29,6 @@ public class DropConstraintRest {
 		dropConstraint.setOracle(String.format(ValidacoesOracle.DROP_CONSTRAINT.getValor(), name,
 				replacer.replaceQueryToOracle(query.toUpperCase())));
 
-		Gson gson = new Gson();
-		return gson.toJson(dropConstraint);
+		return new Gson().toJson(dropConstraint);
 	}
 }

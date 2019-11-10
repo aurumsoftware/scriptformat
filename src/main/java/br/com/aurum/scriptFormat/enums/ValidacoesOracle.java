@@ -53,7 +53,7 @@ public enum ValidacoesOracle {
 			"     select count(*) into chkSeq from USER_TAB_COLS where TABLE_NAME = '%s';\n" + 
 			"     if chkSeq = 1 then\n" + 
 			"       execute immediate\n" + 
-			"      DROP TABLE %s;\n" + 
+			"           DROP TABLE %s;\n" + 
 			"     end if;\n" + 
 			"end;\n" + 
 			"/\n" + 

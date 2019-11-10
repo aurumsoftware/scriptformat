@@ -25,8 +25,7 @@ public class AddPrimaryKeyRest {
 		
 		addPrimaryKey.setOracle(String.format(ValidacoesOracle.ADD_PRIMARY_KEY.getValor(), name, table, name, column));
 		
-		Gson gson = new Gson();
-		return gson.toJson(addPrimaryKey);
+		return new Gson().toJson(addPrimaryKey);
 	}
 
 }
