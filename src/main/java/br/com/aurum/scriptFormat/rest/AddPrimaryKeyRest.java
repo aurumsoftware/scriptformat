@@ -16,14 +16,14 @@ import br.com.aurum.scriptFormat.model.AddPrimaryKey;
 public class AddPrimaryKeyRest {
 	
 	@RequestMapping(value="/addPrimaryKey")
-	public @ResponseBody String getAddPrimaryKey(@RequestParam String name, @RequestParam String table, @RequestParam String column, @RequestParam(defaultValue="1") Integer number) {
-		AddPrimaryKey addPrimaryKey = new AddPrimaryKey().withName(name).withTable(table).withColumn(column).withComment(number);
+	public @ResponseBody String getAddPrimaryKey(@RequestParam String name, @RequestParam String table, @RequestParam String column) {
+		AddPrimaryKey addPrimaryKey = new AddPrimaryKey().withName(name).withTable(table).withColumn(column);;
 		
-		addPrimaryKey.setFirebird(String.format(ValidacoesFirebird.ADD_PRIMARY_KEY.getValor(), name, table, name));
+		addPrimaryKey.setFirebird(String.format(ValidacoesFirebird.ADD_PRIMARY_KEY.getValor(), name, table, name, column));
 		
-		addPrimaryKey.setSqlServer(String.format(ValidacoesSQL.ADD_PRIMARY_KEY.getValor(), name, table, name));
+		addPrimaryKey.setSqlServer(String.format(ValidacoesSQL.ADD_PRIMARY_KEY.getValor(), name, table, name, column));
 		
-		addPrimaryKey.setOracle(String.format(ValidacoesOracle.ADD_PRIMARY_KEY.getValor(), name, table, name));
+		addPrimaryKey.setOracle(String.format(ValidacoesOracle.ADD_PRIMARY_KEY.getValor(), name, table, name, column));
 		
 		Gson gson = new Gson();
 		return gson.toJson(addPrimaryKey);

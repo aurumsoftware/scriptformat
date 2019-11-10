@@ -196,6 +196,7 @@ var type = document.getElementById('typeScriptList').value;
 	$("#typeScript").hide();
 	$("#valueScript").hide();
 	$("#txtValueScript").text("Valor");
+	$("#script").prop('disabled', false);
 	switch(type) {
 			case "createTable":
 				$("#columnScript").hide();
@@ -223,6 +224,9 @@ var type = document.getElementById('typeScriptList').value;
 			break;
 			case "addPrimaryKey":
 				$("#column").show();
+				$("#valueScript").show();
+				$("#script").prop('disabled', true);
+				$("#txtValueScript").text("Primary Key");
 			break;
 			case "insertInto":
 				$("#column").show();
