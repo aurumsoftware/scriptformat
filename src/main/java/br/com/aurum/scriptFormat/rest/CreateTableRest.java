@@ -17,8 +17,8 @@ import br.com.aurum.scriptFormat.model.CreateTable;
 public class CreateTableRest {
 	
 	@RequestMapping(value="/createTable")
-	public @ResponseBody String getCreateTable(@RequestParam String query, @RequestParam String table, @RequestParam(defaultValue="1") Integer number) {
-		CreateTable createTable = new CreateTable().withQuery(query).havingTable(table).withComment(number);
+	public @ResponseBody String getCreateTable(@RequestParam String query, @RequestParam String table) {
+		CreateTable createTable = new CreateTable().withQuery(query).havingTable(table);
 		
 		Replacer replacer = new Replacer();
 		
@@ -30,7 +30,6 @@ public class CreateTableRest {
 		
 		createTable.setOracle(String.format(ValidacoesOracle.CREATE_TABLE.getValor(), table, 
 				replacer.replaceQueryToOracle(query.toUpperCase())));
-		
 		
 		Gson gson = new Gson();
 		return gson.toJson(createTable);

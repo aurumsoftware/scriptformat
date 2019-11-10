@@ -17,75 +17,48 @@ app.controller('scriptController', ['$scope', '$http', '$window', 'utilService',
 		var columnReferenced = $scope.columnReferenced == undefined ? "" : $scope.columnReferenced;
 		var tableReferenced = $scope.tableReferenced == undefined ? "" : $scope.tableReferenced;
 		
-		query = query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a");
-		
+//		query = query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a");
+//		query = query.replaceAll("\r\n","%0d%0a").replaceAll("\n","%0d%0a");
+		var url = "";
 		if (type == 'addColumn') {
-			var url = "http://localhost:8080/addColumn?query=" + query + "&table=" + table + "&column=" + column;
-					
-			$http.get(url).success(function(data) {
-				$scope.dados = data;		
-			});
+			url = "http://localhost:8080/addColumn?query=" + query + "&table=" + table + "&column=" + column;
 		}
 		
 		
 		if (type == 'addForeignKey') {
-			var url = "http://localhost:8080/addForeignKey?query=" + query + "&name=" + value;
-						
-			$http.get(url).success(function(data) {
-				$scope.dados = data;		
-			});
+			url = "http://localhost:8080/addForeignKey?query=" + query + "&name=" + value;
 		}
 		
 
 		if (type == 'addPrimaryKey') {
-			var url = "http://localhost:8080/addPrimaryKey?table=" + table + "&name=" + value
-			+ "&column=" + column;
-						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+			url = "http://localhost:8080/addPrimaryKey?table=" + table + "&name=" + value + "&column=" + column;
 		}
 		
 		
 		if (type == 'createTable') {
-			var url = "http://localhost:8080/createTable?table=" + table + "&query=" + query;
-						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+			url = "http://localhost:8080/createTable?table=" + table + "&query=" + query;
 		}
 		
 		if (type == 'dropColumn') {
-			var url = "http://localhost:8080/dropColumn?table=" + table + "&query=" + query + "&column=" + column;
-						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+			url = "http://localhost:8080/dropColumn?table=" + table + "&query=" + query + "&column=" + column;
 		}
 
 		if (type == 'dropConstraint') {
-			var url = "http://localhost:8080/dropConstraint?table=" + table + "&query=" + query + "&name=" + value;
-						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+			url = "http://localhost:8080/dropConstraint?table=" + table + "&query=" + query + "&name=" + value;
 		}		
 	
 		if (type == 'dropTable') {
-			var url = "http://localhost:8080/dropTable?table=" + table + "&query=" + query;
-						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+			url = "http://localhost:8080/dropTable?table=" + table + "&query=" + query;
 		}			
 	
 		if (type == 'insert') {
-			var url = "http://localhost:8080/insert?query=" + query + "&table=" + table + "&column=" + column + "&value=" + value;
-						
-				$http.get(url).success(function(data) {
-					$scope.dados = data;		
-				});
+			url = "http://localhost:8080/insert?query=" + query + "&table=" + table + "&column=" + column + "&value=" + value;
 		}
 		
+		if (url != "") {
+			$http.get(encodeURI(url)).success(function(data) {
+				$scope.dados = data;		
+			});
+		}
 	}
 }]);
